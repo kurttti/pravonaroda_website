@@ -284,14 +284,15 @@ export default function Home() {
             <div className="contact-row"><span>Адрес</span><p>г. Москва, ул. Куликовская, д. 6<br />ТЦ «Алфавит», 1 этаж</p></div>
             <a className="route-link" href="https://yandex.ru/maps/?text=Москва%2C%20Куликовская%20улица%2C%206" target="_blank" rel="noreferrer">Построить маршрут ↗</a>
           </div>
-          <div className="map-card" aria-label="Ориентир офиса">
-            <div className="map-grid" />
-            <div className="map-ring ring-one" />
-            <div className="map-ring ring-two" />
-            <div className="map-road road-one" />
-            <div className="map-road road-two" />
-            <div className="map-pin"><span>НЮ</span></div>
-            <div className="map-label"><strong>ТЦ «Алфавит»</strong><span>Куликовская, 6</span></div>
+          <div className="map-card">
+            <iframe
+              className="yandex-map"
+              src="https://yandex.ru/map-widget/v1/?mode=search&text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9A%D1%83%D0%BB%D0%B8%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%2C%206&z=16&lang=ru_RU"
+              title="Яндекс Карта: ТЦ «Алфавит», Москва, Куликовская улица, 6"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>
