@@ -21,7 +21,7 @@ main { min-width: 0; overflow-x: clip; }
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; }
 .container { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
-.container > *, .hero-copy, .action-card, .section-heading > *, .steps-list article > *, .process-line article, .situation-card, .case-card, .advantages-grid > *, .advantage-list article > *, .consultation-grid > *, .faq-grid > *, .office-grid > *, .contact-row > *, .footer-top > *, .footer-bottom > * { min-width: 0; }
+.container > *, .hero-copy, .action-card, .section-heading > *, .steps-list article > *, .process-line article, .situation-card, .service-card, .advantages-grid > *, .advantage-list article > *, .consultation-grid > *, .faq-grid > *, .office-grid > *, .contact-row > *, .footer-top > *, .footer-bottom > * { min-width: 0; }
 h1, h2, h3, p, summary, .contact-row a, .footer-phone { overflow-wrap: normal; word-break: normal; hyphens: none; }
 
 .urgent-bar { background: #092225; color: #dce8e2; font-size: 12px; letter-spacing: .02em; }
@@ -82,6 +82,17 @@ h1 em { font-weight: 400; color: #e2ae8e; }
 .stat-copy { font-size: 11px; line-height: 1.55; color: #aec0ba; }
 .source-link { justify-self: end; font-size: 10px; border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: 4px; color: #d8e2de; }
 
+.intro-statement { background: #092225; color: white; border-top: 1px solid rgba(255,255,255,.1); padding: 82px 0 88px; }
+.intro-statement-grid { display: grid; grid-template-columns: .55fr 1.45fr; gap: 110px; align-items: start; }
+.intro-statement-label { padding-top: 8px; }
+.intro-statement-label span, .intro-statement-label strong { display: block; }
+.intro-statement-label span { color: #d99a77; font-size: 9px; line-height: 1.5; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+.intro-statement-label strong { max-width: 215px; margin-top: 16px; color: #92aaa2; font-size: 11px; line-height: 1.6; font-weight: 500; }
+.intro-statement-copy { padding-left: 48px; border-left: 1px solid rgba(255,255,255,.14); }
+.intro-statement-copy h2 { max-width: 830px; margin: 0; font-family: var(--font-serif); font-size: clamp(38px, 4.3vw, 58px); line-height: 1.06; letter-spacing: -.035em; font-weight: 400; }
+.intro-statement-copy p { max-width: 780px; margin: 28px 0 0; color: #adc0ba; font-size: 15px; line-height: 1.8; }
+.intro-statement-copy a { display: inline-flex; gap: 14px; align-items: center; margin-top: 28px; color: #efb895; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; border-bottom: 1px solid rgba(239,184,149,.38); padding-bottom: 5px; }
+
 .section { padding: 120px 0; }
 .section-light { background: var(--paper); }
 .section-heading h2, .steps-title h2, .office-info h2, .advantages-grid h2, .consultation-grid h2, .faq-grid h2, .courier-heading h2 { font-family: var(--font-serif); font-size: clamp(45px, 5vw, 68px); font-weight: 400; line-height: 1; letter-spacing: -.04em; margin: 24px 0 0; }
@@ -122,6 +133,7 @@ h1 em { font-weight: 400; color: #e2ae8e; }
 .big-number { font-family: var(--font-serif); font-size: 42px; color: #d69977; }
 .steps-list h3 { font-family: var(--font-serif); font-size: 25px; font-weight: 400; margin: 4px 0 11px; }
 .steps-list p { color: #aebfba; font-size: 12px; line-height: 1.75; margin: 0; max-width: 490px; }
+.step-contact a { display: inline-flex; align-items: center; gap: 12px; margin-top: 20px; color: #f1b793; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid rgba(241,183,147,.4); padding-bottom: 5px; }
 
 .process-section { background: var(--white); }
 .centered-heading { text-align: center; max-width: 750px; margin: 0 auto 65px; }
@@ -134,14 +146,24 @@ h1 em { font-weight: 400; color: #e2ae8e; }
 .process-line h3 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; margin-bottom: 10px; }
 .process-line p { color: #708184; font-size: 11px; line-height: 1.6; }
 
-.cases-section { background: var(--ink); color: white; }
-.cases-heading > p { color: #98aca5; }
-.cases-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-left: 1px solid rgba(255,255,255,.16); }
-.case-card { min-height: 350px; padding: 35px 32px; border: 1px solid rgba(255,255,255,.16); border-left: none; display: flex; flex-direction: column; }
-.case-card > span { color: #d79a78; text-transform: uppercase; font-size: 9px; letter-spacing: .16em; }
-.case-card h3 { font-family: var(--font-serif); font-size: 30px; font-weight: 400; line-height: 1.1; margin: 70px 0 18px; }
-.case-card p { color: #9fb2ac; font-size: 12px; line-height: 1.75; }
-.case-card a { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.15); font-size: 11px; font-weight: 700; color: #f3c1a4; }
+.services-section { background: #e9efed; }
+.services-heading { align-items: center; }
+.services-heading > p { color: #64797b; }
+.services-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.service-card { min-height: 430px; padding: 32px 34px 30px; background: rgba(255,255,255,.62); border: 1px solid rgba(16,44,46,.12); display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform .25s ease, background .25s ease, box-shadow .25s ease; }
+.service-card::after { content: ""; position: absolute; width: 160px; height: 160px; border: 1px solid rgba(16,44,46,.07); border-radius: 50%; right: -70px; top: -70px; box-shadow: 0 0 0 38px rgba(16,44,46,.025); pointer-events: none; }
+.service-card:hover { transform: translateY(-4px); background: var(--white); box-shadow: 0 16px 35px rgba(16,44,46,.07); }
+.service-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; position: relative; z-index: 1; }
+.service-number { color: #8b9d9f; font-family: var(--font-serif); font-size: 16px; }
+.service-mark { width: 58px; height: 58px; border-radius: 16px; display: grid; place-items: center; flex: none; background: #8199a3; color: white; font-family: var(--font-serif); font-size: 17px; letter-spacing: -.02em; box-shadow: 0 10px 22px rgba(62,87,95,.15); }
+.service-card h3 { max-width: 500px; margin: 34px 0 16px; color: #ae673f; font-family: var(--font-sans); font-size: clamp(24px, 2.5vw, 34px); line-height: 1.12; letter-spacing: -.035em; font-weight: 500; text-transform: uppercase; }
+.service-card > p { max-width: 530px; color: #687c7e; font-size: 12px; line-height: 1.7; }
+.service-card ul { list-style: none; padding: 0; margin: 12px 0 24px; color: #536a6c; }
+.service-card li { position: relative; padding: 8px 0 8px 18px; border-top: 1px solid rgba(16,44,46,.1); font-size: 11px; line-height: 1.5; }
+.service-card li::before { content: ""; position: absolute; left: 0; top: 14px; width: 5px; height: 5px; border-radius: 50%; background: #8199a3; }
+.service-card a { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(16,44,46,.14); color: var(--ink); font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.service-card a span { color: var(--accent-dark); font-size: 16px; }
+.services-note { max-width: 660px; margin: 24px 0 0 auto; color: #657a7c; font-size: 10px; line-height: 1.65; text-align: right; }
 
 .advantages-section { background: var(--paper-2); }
 .advantages-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 130px; }
@@ -201,7 +223,7 @@ footer { background: #092225; color: white; }
   .situation-grid { grid-template-columns: repeat(2, 1fr); }
   .situation-card:last-child { grid-column: 1 / -1; }
   .courier-grid { gap: 70px; }
-  .cases-grid { grid-template-columns: repeat(2, 1fr); }
+  .intro-statement-grid { gap: 60px; }
   .first-steps-grid, .advantages-grid, .faq-grid, .office-grid { gap: 70px; }
   .consultation-grid { gap: 70px; }
 }
@@ -228,6 +250,13 @@ footer { background: #092225; color: white; }
   .stat-intro { grid-column: 1 / -1; }
   .stat-value { font-size: 34px; }
   .section { padding: 82px 0; }
+  .intro-statement { padding: 65px 0 70px; }
+  .intro-statement-grid { grid-template-columns: 1fr; gap: 32px; }
+  .intro-statement-label { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; padding: 0; }
+  .intro-statement-label strong { margin: 0; }
+  .intro-statement-copy { padding: 30px 0 0; border-left: 0; border-top: 1px solid rgba(255,255,255,.14); }
+  .intro-statement-copy h2 { font-size: clamp(32px, 9vw, 42px); }
+  .intro-statement-copy p { font-size: 14px; line-height: 1.72; }
   .section-heading h2, .steps-title h2, .office-info h2, .advantages-grid h2, .consultation-grid h2, .faq-grid h2, .courier-heading h2 { font-size: clamp(34px, 9.8vw, 42px); line-height: 1.04; }
   .split-heading { grid-template-columns: 1fr; gap: 30px; margin-bottom: 40px; }
   .situation-grid { grid-template-columns: 1fr; }
@@ -243,10 +272,10 @@ footer { background: #092225; color: white; }
   .big-number { font-size: 32px; }
   .process-line { grid-template-columns: 1fr 1fr; row-gap: 45px; }
   .process-line::before { display: none; }
-  .cases-grid { grid-template-columns: 1fr; border-left: 1px solid rgba(255,255,255,.16); }
-  .case-card { min-height: 300px; border-left: none; border-bottom: none; }
-  .case-card:last-child { border-bottom: 1px solid rgba(255,255,255,.16); }
-  .case-card h3 { margin-top: 48px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { min-height: 390px; padding: 28px 26px 26px; }
+  .service-card h3 { font-size: clamp(23px, 7.2vw, 30px); }
+  .services-note { text-align: left; margin-left: 0; }
   .consultation-actions { align-items: flex-start; flex-direction: column; gap: 22px; }
   summary { gap: 16px; padding: 18px 0; line-height: 1.25; }
   summary span { flex: none; }
@@ -270,6 +299,10 @@ footer { background: #092225; color: white; }
   h1 { font-size: clamp(34px, 10.5vw, 42px); }
   .action-card { padding: 26px 22px; }
   .action-card h2 { font-size: 30px; }
+  .intro-statement-label { grid-template-columns: 1fr; gap: 12px; }
+  .intro-statement-label strong { max-width: none; }
+  .service-card { min-height: 0; }
+  .service-card h3 { font-size: clamp(21px, 6.8vw, 27px); }
   .courier-content li { grid-template-columns: 38px minmax(0, 1fr); gap: 12px; }
   .steps-list article { grid-template-columns: 48px minmax(0, 1fr); gap: 14px; }
   .advantage-list article { grid-template-columns: 42px minmax(0, 1fr); gap: 14px; }
