@@ -35,6 +35,10 @@ yarn-error.log*
 .vercel
 
 /dist/
+/.spaceweb-ssr/
+/spaceweb-dist/
 /.wrangler/
 /outputs/
 /work/
+/.openai/gh-config/
+/.openai/креды sweb.ru

@@ -1,0 +1,53 @@
+name: Deploy to SpaceWeb
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: spaceweb-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://pravonaroda.ru/
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build:spaceweb
+
+      - name: Install deployment client
+        run: sudo apt-get update && sudo apt-get install --yes lftp
+
+      - name: Deploy to SpaceWeb
+        env:
+          SWEB_FTP_HOST: ${{ secrets.SWEB_FTP_HOST }}
+          SWEB_FTP_USERNAME: ${{ secrets.SWEB_FTP_USERNAME }}
+          SWEB_FTP_PASSWORD: ${{ secrets.SWEB_FTP_PASSWORD }}
+        run: |
+          lftp -u "${SWEB_FTP_USERNAME},${SWEB_FTP_PASSWORD}" "ftp://${SWEB_FTP_HOST}" -e "
+            set ftp:ssl-allow no;
+            set ftp:passive-mode true;
+            set net:max-retries 3;
+            set net:timeout 20;
+            mirror --reverse --delete --verbose --exclude-glob cgi-bin/** spaceweb-dist/ /pravonaroda_ru/public_html/;
+            bye
+          "
