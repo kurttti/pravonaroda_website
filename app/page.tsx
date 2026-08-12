@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Народный юрист — помощь пострадавшим от мошенничества",
+  title: "Юрист по мошенничеству в Москве — помощь пострадавшим",
   description:
-    "Юридическая помощь при мошенничестве, незаконных списаниях и спорных переводах. Москва, ул. Куликовская, д. 6. Телефон +7 (917) 584-40-40.",
+    "Юридическая помощь пострадавшим от мошенничества в Москве: спорные переводы, незаконные списания, лжеброкеры и кредиты без согласия. Честная оценка ситуации.",
+  alternates: { canonical: "https://pravonaroda.ru/" },
 };
 
 const phone = "+79175844040";
+const siteUrl = "https://pravonaroda.ru/";
 
 const situations = [
   {
@@ -35,6 +37,76 @@ const situations = [
   },
 ];
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LegalService",
+      "@id": `${siteUrl}#legal-service`,
+      name: "Народный юрист",
+      legalName: "ИП Милевский Александр Александрович",
+      url: siteUrl,
+      logo: `${siteUrl}apple-touch-icon.png`,
+      image: `${siteUrl}og.png`,
+      description: "Юридическая помощь пострадавшим от мошенничества, незаконных списаний и спорных переводов в Москве.",
+      telephone: phone,
+      taxID: "775101196352",
+      identifier: {
+        "@type": "PropertyValue",
+        name: "ОГРНИП",
+        value: "326774600529055",
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Куликовская улица, дом 6, ТЦ «Алфавит», 1 этаж",
+        addressLocality: "Москва",
+        addressRegion: "Москва",
+        addressCountry: "RU",
+      },
+      areaServed: { "@type": "City", name: "Москва" },
+      knowsLanguage: "ru",
+      knowsAbout: [
+        "телефонное мошенничество",
+        "незаконные банковские списания",
+        "спорные денежные переводы",
+        "лжеброкеры",
+        "кредиты без согласия",
+        "интернет-мошенничество",
+      ],
+      hasMap: "https://yandex.ru/maps/?text=Москва%2C%20Куликовская%20улица%2C%206",
+      makesOffer: situations.map((item) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: item.title,
+          description: item.text,
+          areaServed: { "@type": "City", name: "Москва" },
+          provider: { "@id": `${siteUrl}#legal-service` },
+        },
+      })),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      url: siteUrl,
+      name: "Народный юрист",
+      inLanguage: "ru-RU",
+      publisher: { "@id": `${siteUrl}#legal-service` },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}#webpage`,
+      url: siteUrl,
+      name: "Юрист по мошенничеству в Москве — помощь пострадавшим",
+      description: "Юридическая помощь пострадавшим от мошенничества в Москве: спорные переводы, незаконные списания, лжеброкеры и кредиты без согласия.",
+      isPartOf: { "@id": `${siteUrl}#website` },
+      about: { "@id": `${siteUrl}#legal-service` },
+      primaryImageOfPage: `${siteUrl}og.png`,
+      inLanguage: "ru-RU",
+    },
+  ],
+};
+
 const scenarios = [
   {
     label: "Типовая ситуация 01",
@@ -56,6 +128,10 @@ const scenarios = [
 export default function Home() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
+      />
       <div className="urgent-bar">
         <div className="container urgent-inner">
           <span>Деньги списали только что?</span>

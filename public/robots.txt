@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Host: pravonaroda.ru
+Sitemap: https://pravonaroda.ru/sitemap.xml

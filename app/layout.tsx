@@ -2,12 +2,33 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pravonaroda.ru"),
+  applicationName: "Народный юрист",
   title: {
-    default: "Народный юрист — помощь при мошенничестве",
+    default: "Юрист по мошенничеству в Москве — Народный юрист",
     template: "%s | Народный юрист",
   },
   description:
-    "Юридическая помощь при мошенничестве, незаконных списаниях и спорных переводах в Москве.",
+    "Юридическая помощь пострадавшим от мошенничества в Москве: спорные переводы, незаконные списания, лжеброкеры и кредиты без согласия.",
+  alternates: {
+    canonical: "/",
+    languages: { "ru-RU": "/", "x-default": "/" },
+  },
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    url: "/",
+    siteName: "Народный юрист",
+    title: "Юрист по мошенничеству в Москве — Народный юрист",
+    description: "Помогаем пострадавшим от мошенничества разобраться в ситуации, сохранить доказательства и выбрать правовой путь.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Народный юрист — помощь пострадавшим от мошенничества" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Юрист по мошенничеству в Москве — Народный юрист",
+    description: "Юридическая помощь пострадавшим от мошенничества, незаконных списаний и спорных переводов.",
+    images: ["/og.png"],
+  },
   icons: {
     icon: [
       { url: "/favicon.svg?v=2", type: "image/svg+xml" },
@@ -15,7 +36,12 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png?v=2",
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
+  category: "legal services",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
