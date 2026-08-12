@@ -55,4 +55,4 @@ jobs:
       - name: Notify search engines via IndexNow
         run: |
           curl --fail --silent --show-error --retry 3 \
-            "https://yandex.com/indexnow?url=https%3A%2F%2Fpravonaroda.ru%2F&key=c8319e9d74529ea1fccac31b09341b04"
+            "https://api.indexnow.org/indexnow?url=https%3A%2F%2Fpravonaroda.ru%2F&key=c8319e9d74529ea1fccac31b09341b04&keyLocation=https%3A%2F%2Fpravonaroda.ru%2Fc8319e9d74529ea1fccac31b09341b04.txt"
