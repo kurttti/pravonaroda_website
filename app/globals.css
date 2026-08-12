@@ -15,11 +15,14 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); }
+html { scroll-behavior: smooth; max-width: 100%; overflow-x: clip; }
+body { margin: 0; max-width: 100%; overflow-x: clip; background: var(--paper); color: var(--ink); font-family: var(--font-sans); }
+main { min-width: 0; overflow-x: clip; }
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; }
 .container { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+.container > *, .hero-copy, .action-card, .section-heading > *, .steps-list article > *, .process-line article, .situation-card, .case-card, .advantages-grid > *, .advantage-list article > *, .consultation-grid > *, .faq-grid > *, .office-grid > *, .contact-row > *, .footer-top > *, .footer-bottom > * { min-width: 0; }
+h1, h2, h3, p, summary, .contact-row a, .footer-phone { overflow-wrap: anywhere; hyphens: auto; }
 
 .urgent-bar { background: #092225; color: #dce8e2; font-size: 12px; letter-spacing: .02em; }
 .urgent-inner { min-height: 38px; display: flex; align-items: center; gap: 20px; }
@@ -195,7 +198,7 @@ footer { background: #092225; color: white; }
   .brand small, .header-contact { display: none; }
   .button-small { min-height: 38px; padding: 0 14px; }
   .hero-grid { min-height: auto; padding: 70px 0; grid-template-columns: 1fr; gap: 55px; }
-  h1 { font-size: clamp(48px, 15vw, 67px); }
+  h1 { font-size: clamp(42px, 12.5vw, 54px); line-height: 1; }
   .hero-lead { font-size: 16px; }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 22px; }
   .hero-note { line-height: 1.5; }
@@ -204,7 +207,7 @@ footer { background: #092225; color: white; }
   .stat-intro { grid-column: 1 / -1; }
   .stat-value { font-size: 34px; }
   .section { padding: 82px 0; }
-  .section-heading h2, .steps-title h2, .office-info h2, .advantages-grid h2, .consultation-grid h2, .faq-grid h2 { font-size: 45px; }
+  .section-heading h2, .steps-title h2, .office-info h2, .advantages-grid h2, .consultation-grid h2, .faq-grid h2 { font-size: clamp(39px, 11vw, 45px); }
   .split-heading { grid-template-columns: 1fr; gap: 30px; margin-bottom: 40px; }
   .situation-grid { grid-template-columns: 1fr; }
   .situation-card { min-height: 280px; border-left: 1px solid var(--line); }
@@ -222,11 +225,33 @@ footer { background: #092225; color: white; }
   .case-card:last-child { border-bottom: 1px solid rgba(255,255,255,.16); }
   .case-card h3 { margin-top: 48px; }
   .consultation-actions { align-items: flex-start; flex-direction: column; gap: 22px; }
+  summary { gap: 16px; padding: 18px 0; line-height: 1.25; }
+  summary span { flex: none; }
+  .contact-row { grid-template-columns: 70px minmax(0, 1fr); }
   .map-card { min-height: 330px; }
   .footer-top, .footer-bottom { align-items: flex-start; flex-direction: column; }
   .footer-top { padding: 45px 0; }
   .footer-phone { font-size: 24px; }
   .footer-bottom { padding: 25px 0; }
+}
+
+@media (max-width: 420px) {
+  .urgent-inner { min-height: 0; padding: 8px 0; flex-wrap: wrap; line-height: 1.35; }
+  .urgent-inner > span:first-child { flex: 1 1 145px; }
+  .urgent-inner a { flex: 0 1 135px; text-align: right; }
+  .header-inner { gap: 8px; }
+  .brand { gap: 8px; }
+  .brand strong { font-size: 14px; }
+  .button-small { padding: 0 11px; font-size: 12px; }
+  .eyebrow { letter-spacing: .15em; line-height: 1.45; }
+  h1 { font-size: clamp(40px, 12vw, 48px); }
+  .action-card { padding: 26px 22px; }
+  .action-card h2 { font-size: 30px; }
+  .steps-list article { grid-template-columns: 48px minmax(0, 1fr); gap: 14px; }
+  .advantage-list article { grid-template-columns: 42px minmax(0, 1fr); gap: 14px; }
+  .process-line { grid-template-columns: 1fr; }
+  .contact-row { grid-template-columns: 1fr; gap: 8px; }
+  .map-card { min-height: 300px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
