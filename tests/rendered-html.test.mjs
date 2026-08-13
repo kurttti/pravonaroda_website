@@ -20,7 +20,9 @@ test("renders a concise conversion-focused home page", async () => {
 
   const html = await response.text();
   assert.match(html, /Юридическая помощь при/);
-  assert.match(html, /Если у вас похитили деньги или драгоценности/);
+  assert.match(html, /Стали жертвой мошенников/);
+  assert.match(html, /специализируемся на юридической помощи по возврату/);
+  assert.match(html, /Будем добиваться возврата того, что принадлежит вам по праву/);
   assert.match(html, /Курьер забрал наличные, украшения или другие ценности/);
   assert.match(html, /Позвонить нам/);
   assert.match(html, /href="#request">Написать/);
