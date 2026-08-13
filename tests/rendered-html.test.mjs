@@ -19,8 +19,9 @@ test("renders a concise conversion-focused home page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /Похитили деньги/);
-  assert.match(html, /или ценности/);
+  assert.match(html, /Юридическая помощь при/);
+  assert.match(html, /Если у вас похитили деньги или драгоценности/);
+  assert.match(html, /Курьер забрал наличные, украшения или другие ценности/);
   assert.match(html, /Позвонить нам/);
   assert.match(html, /href="#request">Написать/);
   assert.match(html, /name="name"/);
@@ -31,6 +32,7 @@ test("renders a concise conversion-focused home page", async () => {
   assert.doesNotMatch(html, /Если деньги или ценности забрал курьер/);
   assert.doesNotMatch(html, /От хаоса — к понятному плану/);
   assert.doesNotMatch(html, /По-человечески/);
+  assert.doesNotMatch(html, /specialization-strip/);
 });
 
 test("moves detailed fraud guidance to a dedicated page", async () => {

@@ -64,9 +64,9 @@ export default function Home() {
       <section className="hero hero-simple" id="top">
         <div className="container hero-simple-grid">
           <div className="hero-copy">
-            <div className="eyebrow"><span /> Помощь пострадавшим от мошенничества</div>
-            <h1>Похитили деньги<br />или <em>ценности?</em></h1>
-            <p className="hero-lead">Мошенники списали средства, убедили вас сделать перевод или передать наличные, украшения и другие ценности курьеру? Мы разберём ситуацию и предложим законный план действий.</p>
+            <div className="eyebrow"><span /> Наше профильное направление</div>
+            <h1>Юридическая помощь при <em>мошенничестве</em></h1>
+            <p className="hero-lead">Если у вас похитили деньги или драгоценности, списали средства, вы перевели их под влиянием обмана или передали курьеру — обратитесь к нам. Разберём обстоятельства и предложим законный план действий.</p>
             <div className="hero-actions">
               <a className="button button-primary" href={`tel:${phone}`}>Позвонить нам</a>
               <a className="button button-outline-light" href="#request">Написать</a>
@@ -75,22 +75,17 @@ export default function Home() {
           </div>
 
           <aside className="hero-scope" aria-label="С какими ситуациями можно обратиться">
-            <span className="hero-scope-kicker">Можно обратиться, если</span>
+            <div className="hero-scope-heading">
+              <span className="hero-scope-kicker">Обратитесь к нам, если</span>
+              <span className="hero-scope-mark" aria-hidden="true">НЮ</span>
+            </div>
             <ul>
               <li><span>01</span><strong>Деньги списали со счёта без вашего согласия</strong></li>
-              <li><span>02</span><strong>Вы сами перевели средства под влиянием обмана</strong></li>
-              <li><span>03</span><strong>Наличные или драгоценности забрал курьер</strong></li>
+              <li><span>02</span><strong>Вы перевели средства мошенникам под влиянием обмана</strong></li>
+              <li><span>03</span><strong>Курьер забрал наличные, украшения или другие ценности</strong></li>
             </ul>
-            <a href="/pomoshch-pri-moshennichestve/">Как именно мы помогаем <span>→</span></a>
+            <a href="/pomoshch-pri-moshennichestve/">Подробнее о юридической помощи <span>→</span></a>
           </aside>
-        </div>
-      </section>
-
-      <section className="specialization-strip">
-        <div className="container specialization-grid">
-          <div><span>01</span><strong>Мошенничество — наше профильное направление</strong></div>
-          <div><span>02</span><strong>Работаем с деньгами, ценностями и кредитами</strong></div>
-          <div><span>03</span><strong>Принимаем лично в Москве</strong></div>
         </div>
       </section>
 
