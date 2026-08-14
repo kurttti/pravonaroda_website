@@ -2,7 +2,7 @@
 
 export default function ContactForm() {
   return (
-    <form className="contact-form" aria-describedby="form-status">
+    <form className="contact-form">
       <label>
         <span>Ваше имя</span>
         <input type="text" name="name" autoComplete="name" placeholder="Как к вам обращаться" required />
@@ -16,7 +16,6 @@ export default function ContactForm() {
         <textarea name="message" rows={5} placeholder="Кратко опишите ситуацию: что и когда произошло, как были переданы деньги или ценности" required />
       </label>
       <button type="submit" disabled aria-disabled="true">Отправить заявку</button>
-      <p className="form-status" id="form-status">Отправку на почту подключим после создания рабочего адреса. Пока быстрее всего позвонить нам.</p>
     </form>
   );
 }
