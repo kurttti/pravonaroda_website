@@ -29,7 +29,7 @@ test("renders a concise conversion-focused home page", async () => {
   assert.match(html, /name="name"/);
   assert.match(html, /name="phone"/);
   assert.match(html, /name="message"/);
-  assert.match(html, /Отправку на почту подключим/);
+  assert.doesNotMatch(html, /Отправку на почту подключим/);
   assert.doesNotMatch(html, /Обман меняется/);
   assert.doesNotMatch(html, /Если деньги или ценности забрал курьер/);
   assert.doesNotMatch(html, /От хаоса — к понятному плану/);
