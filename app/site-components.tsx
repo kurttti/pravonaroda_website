@@ -14,7 +14,6 @@ export function SiteHeader({ detail = false }: { detail?: boolean }) {
       <header className="site-header">
         <div className="container header-inner">
           <a className="brand" href="/" aria-label="Народный юрист — на главную">
-            <span className="brand-mark" aria-hidden="true">НЮ</span>
             <span><strong>Народный юрист</strong><small>Право на вашей стороне</small></span>
           </a>
           <nav aria-label="Основная навигация">
@@ -58,7 +57,6 @@ export function SiteFooter({ detail = false }: { detail?: boolean }) {
     <footer>
       <div className="container footer-top">
         <a className="brand footer-brand" href={detail ? "/" : "#top"} aria-label="Народный юрист — на главную">
-          <span className="brand-mark">НЮ</span>
           <span><strong>Народный юрист</strong><small>Право на вашей стороне</small></span>
         </a>
         <p>Юридическая помощь пострадавшим<br />от мошенничества и денежных хищений</p>
