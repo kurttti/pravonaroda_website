@@ -40,5 +40,6 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
+/.worktrees/
 /.openai/gh-config/
 /.openai/креды sweb.ru
