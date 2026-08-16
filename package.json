@@ -11,7 +11,7 @@
     "build:spaceweb": "vite build --config vite.spaceweb.config.ts && vite build --config vite.spaceweb.config.ts --ssr src/entry-server.tsx --outDir .spaceweb-ssr && node scripts/prerender.mjs && node scripts/stage-spaceweb-backend.mjs",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern spaceweb-dist --ignore-pattern .spaceweb-ssr",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern spaceweb-dist --ignore-pattern .spaceweb-ssr --ignore-pattern .worktrees",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
