@@ -77,7 +77,6 @@ export default function Home() {
           <aside className="hero-scope" aria-label="С какими ситуациями можно обратиться">
             <div className="hero-scope-heading">
               <span className="hero-scope-kicker">Обратитесь к нам, если</span>
-              <span className="hero-scope-mark" aria-hidden="true">НЮ</span>
             </div>
             <ul>
               <li><span>01</span><strong>Деньги списали со счёта без вашего согласия</strong></li>
@@ -101,7 +100,7 @@ export default function Home() {
           <div className="services-grid services-grid-compact">
             {legalServices.map((item) => (
               <article className="service-card service-card-compact" key={item.number}>
-                <div className="service-card-top"><span className="service-number">{item.number}</span><span className="service-mark" aria-hidden="true">{item.mark}</span></div>
+                <div className="service-card-top"><span className="service-number">{item.number}</span></div>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
                 <a href={item.href}>{item.linkText} <span>→</span></a>
@@ -117,7 +116,7 @@ export default function Home() {
           <div className="request-copy">
             <div className="eyebrow"><span /> Напишите нам</div>
             <h2>Коротко расскажите,<br />что произошло</h2>
-            <p>Оставьте имя, телефон и описание ситуации. После подключения рабочей почты заявки будут приходить напрямую специалисту.</p>
+            <p>Оставьте имя, телефон и краткое описание ситуации. Заявка поступит специалисту на защищённую рабочую почту.</p>
             <a href={`tel:${phone}`}>Нужна помощь сейчас? Позвонить →</a>
           </div>
           <ContactForm />

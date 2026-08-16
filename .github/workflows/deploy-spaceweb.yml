@@ -28,8 +28,24 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "7.1"
+          extensions: mbstring, openssl
+          tools: composer:v2.2
+
       - name: Install dependencies
         run: npm ci
+
+      - name: Install PHP dependencies
+        run: composer install --working-dir=spaceweb --no-dev --prefer-dist --no-interaction --no-progress
+
+      - name: Test PHP request handling
+        run: |
+          php spaceweb/tests/request-validation-test.php
+          php spaceweb/tests/rate-limiter-test.php
+          php spaceweb/tests/contact-mailer-test.php
 
       - name: Build static site
         run: npm run build:spaceweb
@@ -49,6 +65,7 @@ jobs:
             set net:max-retries 3;
             set net:timeout 20;
             mirror --reverse --delete --verbose --exclude-glob cgi-bin/** spaceweb-dist/ /pravonaroda_ru/public_html/;
+            mirror --reverse --delete --verbose spaceweb-private-dist/ /pravonaroda_ru/app/;
             bye
           "
 
