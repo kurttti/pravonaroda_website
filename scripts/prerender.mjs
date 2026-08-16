@@ -22,6 +22,13 @@ const routes = [
     description: "Что делать после хищения денег или ценностей, перевода мошенникам, незаконного списания или передачи курьеру.",
     canonical: "https://pravonaroda.ru/pomoshch-pri-moshennichestve/",
   },
+  {
+    pathname: "/politika-konfidencialnosti/",
+    output: "politika-konfidencialnosti/index.html",
+    title: "Политика конфиденциальности | Народный юрист",
+    description: "Политика обработки персональных данных посетителей сайта pravonaroda.ru.",
+    canonical: "https://pravonaroda.ru/politika-konfidencialnosti/",
+  },
 ];
 
 for (const route of routes) {

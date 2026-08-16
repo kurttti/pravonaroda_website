@@ -51,6 +51,17 @@ test("moves detailed fraud guidance to a dedicated page", async () => {
   assert.match(html, /href="\/#request">Написать/);
 });
 
+test("renders the personal data policy", async () => {
+  const response = await render("/politika-konfidencialnosti");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Политика конфиденциальности/);
+  assert.match(html, /ИП Милевский Александр Александрович/);
+  assert.match(html, /support@pravonaroda\.ru/);
+  assert.match(html, /отозвать согласие/i);
+});
+
 test("ships discoverability and contact essentials", async () => {
   const response = await render();
   const html = await response.text();
