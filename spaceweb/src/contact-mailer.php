@@ -22,11 +22,27 @@ function build_contact_email_content(array $request, $timestamp = null)
     ];
 }
 
+function resolve_contact_smtp_encryption(array $config)
+{
+    $encryption = isset($config['smtp_encryption']) ? strtolower($config['smtp_encryption']) : 'smtps';
+
+    if ($encryption === 'tls' || $encryption === 'starttls') {
+        return PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+    }
+
+    if ($encryption === 'ssl' || $encryption === 'smtps') {
+        return PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
+    }
+
+    throw new InvalidArgumentException('Unsupported SMTP encryption mode.');
+}
+
 function send_contact_email(array $request, array $config)
 {
     $requiredKeys = [
         'smtp_host',
         'smtp_port',
+        'smtp_encryption',
         'smtp_username',
         'smtp_password',
         'from_email',
@@ -45,7 +61,7 @@ function send_contact_email(array $request, array $config)
     $mail->Host = $config['smtp_host'];
     $mail->Port = (int)$config['smtp_port'];
     $mail->SMTPAuth = true;
-    $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
+    $mail->SMTPSecure = resolve_contact_smtp_encryption($config);
     $mail->Username = $config['smtp_username'];
     $mail->Password = $config['smtp_password'];
     $mail->CharSet = PHPMailer\PHPMailer\PHPMailer::CHARSET_UTF8;

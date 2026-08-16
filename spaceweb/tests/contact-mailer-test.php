@@ -1,6 +1,16 @@
 <?php
 
+require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/contact-mailer.php';
+
+$exampleConfig = require __DIR__ . '/../config/mail-config.example.php';
+if ($exampleConfig['smtp_port'] !== 465 || $exampleConfig['smtp_encryption'] !== 'smtps') {
+    throw new RuntimeException('SpaceWeb SMTP must use encrypted port 465.');
+}
+
+if (resolve_contact_smtp_encryption($exampleConfig) !== PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS) {
+    throw new RuntimeException('SMTPS configuration was not resolved correctly.');
+}
 
 $content = build_contact_email_content([
     'name' => 'Анна Иванова',

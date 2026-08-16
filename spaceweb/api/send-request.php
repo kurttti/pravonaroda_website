@@ -59,6 +59,9 @@ try {
     $respond(200, ['ok' => true, 'message' => 'Заявка отправлена. Мы свяжемся с вами по указанному номеру.']);
 } catch (Throwable $error) {
     $incidentId = bin2hex(random_bytes(6));
+    if (isset($projectRoot)) {
+        record_contact_incident($projectRoot, $incidentId, $error->getMessage());
+    }
     error_log('Contact form incident ' . $incidentId . ': ' . $error->getMessage());
     $respond(500, [
         'ok' => false,

@@ -46,6 +46,7 @@ jobs:
           php spaceweb/tests/request-validation-test.php
           php spaceweb/tests/rate-limiter-test.php
           php spaceweb/tests/contact-mailer-test.php
+          php spaceweb/tests/incident-log-test.php
 
       - name: Build static site
         run: npm run build:spaceweb
