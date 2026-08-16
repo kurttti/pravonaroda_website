@@ -37,6 +37,8 @@ yarn-error.log*
 /dist/
 /.spaceweb-ssr/
 /spaceweb-dist/
+/spaceweb-private-dist/
+/spaceweb/vendor/
 /.wrangler/
 /outputs/
 /work/
