@@ -22,7 +22,6 @@
 
 **Files:**
 - Modify: `tests/rendered-html.test.mjs`
-- Create: `tests/contact-validation.test.mjs`
 
 **Interfaces:**
 - Consumes: HTML, сформированный текущими страницами.
@@ -30,7 +29,7 @@
 
 - [ ] **Step 1: Write the failing render tests**
 
-Добавить проверки, что `textarea[name="message"]` не содержит `required` и `minlength`, дата публикации отсутствует, а заголовок размечен двумя `span`. В отдельном тесте чистой функции проверить русские тексты «Укажите ваше имя», «Укажите номер телефона» и «Подтвердите согласие».
+Добавить проверки, что `textarea[name="message"]` не содержит `required` и `minlength`, дата публикации отсутствует, а заголовок размечен двумя `span`. Проверить наличие русских `data-validation-message` у обязательных полей; форма использует эти значения как реальные тексты `setCustomValidity()`.
 
 - [ ] **Step 2: Run test to verify it fails**
 
@@ -45,13 +44,12 @@ Expected: FAIL, потому что текущий комментарий обя
 ### Task 2: Сделать комментарий необязательным и локализовать браузерную валидацию
 
 **Files:**
-- Create: `app/contact-validation.mjs`
 - Modify: `app/contact-form.tsx`
 - Modify: `spaceweb/tests/request-validation-test.php`
 - Modify: `spaceweb/src/request-validation.php`
 
 **Interfaces:**
-- Produces: `getContactValidationMessage(fieldName, validity)` — чистая JavaScript-функция, доступная форме и Node-тесту.
+- Produces: обязательные поля с русским `data-validation-message`, который обработчик `onInvalid` передаёт в `setCustomValidity()`.
 - Produces: `validate_contact_request()` принимает пустой `message` и отклоняет заполненный текст длиннее 4000 символов.
 
 - [ ] **Step 1: Write the failing PHP test**
@@ -70,13 +68,12 @@ Expected: FAIL with `Empty optional message must pass`.
 
 - [ ] **Step 4: Implement localized client validation**
 
-Создать чистую функцию, возвращающую:
+Добавить обязательным полям соответствующие атрибуты:
 
 ```ts
-if (fieldName === "name") return "Укажите ваше имя — не менее 2 символов.";
-if (fieldName === "phone") return "Укажите номер телефона.";
-if (fieldName === "consent") return "Подтвердите согласие на обработку персональных данных.";
-return "Проверьте правильность заполнения поля.";
+data-validation-message="Укажите ваше имя — не менее 2 символов."
+data-validation-message="Укажите номер телефона."
+data-validation-message="Подтвердите согласие на обработку персональных данных."
 ```
 
 Подключить обработчики `onInvalid`, очищать `setCustomValidity("")` на `onInput`/`onChange`, удалить у `textarea` атрибуты `required` и `minLength`.
@@ -134,6 +131,6 @@ Expected: exit 0 and staged backend included.
 - [ ] **Step 3: Commit the implementation**
 
 ```bash
-git add app/contact-validation.mjs app/contact-form.tsx app/politika-konfidencialnosti/page.tsx app/globals.css tests/contact-validation.test.mjs tests/rendered-html.test.mjs spaceweb/src/request-validation.php spaceweb/tests/request-validation-test.php docs/superpowers/plans/2026-08-16-privacy-form-usability.md
+git add app/contact-form.tsx app/politika-konfidencialnosti/page.tsx app/globals.css tests/rendered-html.test.mjs spaceweb/src/request-validation.php spaceweb/tests/request-validation-test.php docs/superpowers/plans/2026-08-16-privacy-form-usability.md
 git commit -m "Improve privacy page and contact form usability"
 ```

@@ -21,6 +21,10 @@ $valid = validate_contact_request($validInput);
 expect_true($valid['ok'] === true, 'Valid request must pass');
 expect_true($valid['data']['phone'] === '+7 (999) 123-45-67', 'Phone must be preserved');
 
+$withoutMessage = validate_contact_request(array_merge($validInput, ['message' => '']));
+expect_true($withoutMessage['ok'] === true, 'Empty optional message must pass');
+expect_true($withoutMessage['data']['message'] === '', 'Empty optional message must be preserved');
+
 $withoutConsent = validate_contact_request(array_merge($validInput, ['consent' => '0']));
 expect_true(isset($withoutConsent['errors']['consent']), 'Consent must be required');
 

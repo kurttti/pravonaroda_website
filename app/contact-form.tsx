@@ -41,6 +41,14 @@ export default function ContactForm() {
     }
   }
 
+  function handleInvalid(event: FormEvent<HTMLInputElement>) {
+    event.currentTarget.setCustomValidity(event.currentTarget.dataset.validationMessage || "Проверьте правильность заполнения поля.");
+  }
+
+  function clearValidationMessage(event: FormEvent<HTMLInputElement>) {
+    event.currentTarget.setCustomValidity("");
+  }
+
   return (
     <form className="contact-form" action="/api/send-request.php" method="post" onSubmit={handleSubmit}>
       <label className="form-honeypot" aria-hidden="true">
@@ -49,18 +57,48 @@ export default function ContactForm() {
       </label>
       <label>
         <span>Ваше имя</span>
-        <input type="text" name="name" autoComplete="name" minLength={2} maxLength={80} placeholder="Как к вам обращаться" required />
+        <input
+          type="text"
+          name="name"
+          autoComplete="name"
+          minLength={2}
+          maxLength={80}
+          placeholder="Как к вам обращаться"
+          data-validation-message="Укажите ваше имя — не менее 2 символов."
+          onInvalid={handleInvalid}
+          onInput={clearValidationMessage}
+          required
+        />
       </label>
       <label>
         <span>Номер телефона</span>
-        <input type="tel" name="phone" autoComplete="tel" inputMode="tel" maxLength={40} placeholder="+7 900 000-00-00" required />
+        <input
+          type="tel"
+          name="phone"
+          autoComplete="tel"
+          inputMode="tel"
+          maxLength={40}
+          placeholder="+7 900 000-00-00"
+          data-validation-message="Укажите номер телефона."
+          onInvalid={handleInvalid}
+          onInput={clearValidationMessage}
+          required
+        />
       </label>
       <label>
-        <span>Расскажите, что произошло</span>
-        <textarea name="message" rows={5} minLength={10} maxLength={4000} placeholder="Кратко опишите ситуацию: что и когда произошло, как были переданы деньги или ценности" required />
+        <span>Расскажите, что произошло — необязательно</span>
+        <textarea name="message" rows={5} maxLength={4000} placeholder="Кратко опишите ситуацию: что и когда произошло, как были переданы деньги или ценности" />
       </label>
       <label className="form-consent">
-        <input type="checkbox" name="consent" value="1" required />
+        <input
+          type="checkbox"
+          name="consent"
+          value="1"
+          data-validation-message="Подтвердите согласие на обработку персональных данных."
+          onInvalid={handleInvalid}
+          onInput={clearValidationMessage}
+          required
+        />
         <span>
           Я согласен на обработку персональных данных в соответствии с{" "}
           <a href="/politika-konfidencialnosti/" target="_blank" rel="noreferrer">политикой конфиденциальности</a>.
