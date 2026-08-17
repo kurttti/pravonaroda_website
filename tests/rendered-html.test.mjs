@@ -55,6 +55,9 @@ test("moves detailed fraud guidance to a dedicated page", async () => {
   assert.match(html, /От хаоса — к понятному плану/);
   assert.match(html, /По-человечески/);
   assert.match(html, /href="\/#request">Написать/);
+  assert.doesNotMatch(html, /Обратиться в полицию/);
+  assert.match(html, /<div class="big-number">03<\/div><div class="step-contact"><h3>Связаться с нами<\/h3>/);
+  assert.doesNotMatch(html, /<div class="big-number">04<\/div>/);
 });
 
 test("renders the personal data policy", async () => {
