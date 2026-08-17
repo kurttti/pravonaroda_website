@@ -30,8 +30,8 @@ function validate_contact_request(array $input)
     }
 
     $messageLength = mb_strlen($message, 'UTF-8');
-    if ($messageLength > 4000) {
-        $errors['message'] = 'Описание не должно превышать 4000 символов.';
+    if ($messageLength < 10 || $messageLength > 4000) {
+        $errors['message'] = 'Описание должно содержать от 10 до 4000 символов.';
     }
 
     if ($consent !== '1') {

@@ -41,11 +41,11 @@ export default function ContactForm() {
     }
   }
 
-  function handleInvalid(event: FormEvent<HTMLInputElement>) {
+  function handleInvalid(event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) {
     event.currentTarget.setCustomValidity(event.currentTarget.dataset.validationMessage || "Проверьте правильность заполнения поля.");
   }
 
-  function clearValidationMessage(event: FormEvent<HTMLInputElement>) {
+  function clearValidationMessage(event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) {
     event.currentTarget.setCustomValidity("");
   }
 
@@ -86,8 +86,18 @@ export default function ContactForm() {
         />
       </label>
       <label>
-        <span>Расскажите, что произошло — необязательно</span>
-        <textarea name="message" rows={5} maxLength={4000} placeholder="Кратко опишите ситуацию: что и когда произошло, как были переданы деньги или ценности" />
+        <span>Расскажите, что произошло</span>
+        <textarea
+          name="message"
+          rows={5}
+          minLength={10}
+          maxLength={4000}
+          placeholder="Кратко опишите ситуацию: что и когда произошло, как были переданы деньги или ценности"
+          data-validation-message="Кратко опишите, что произошло — не менее 10 символов."
+          onInvalid={handleInvalid}
+          onInput={clearValidationMessage}
+          required
+        />
       </label>
       <label className="form-consent">
         <input

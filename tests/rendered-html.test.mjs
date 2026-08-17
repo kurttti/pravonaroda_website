@@ -72,19 +72,22 @@ test("renders the personal data policy", async () => {
   assert.match(html, /class="legal-title-line"[^>]*>Политика</);
   assert.match(html, /class="legal-title-line legal-title-long"[^>]*>конфиденциальности</);
   assert.doesNotMatch(html, /Дата публикации:/);
-  assert.match(html, /описание ситуации при желании/i);
+  assert.doesNotMatch(html, /описание ситуации при желании/i);
+  assert.match(html, /Без имени, телефона, описания ситуации и согласия/);
 });
 
-test("keeps the contact comment optional and validation messages in Russian", async () => {
+test("requires the contact comment and keeps validation messages in Russian", async () => {
   const response = await render();
   const html = await response.text();
   const messageField = html.match(/<textarea\b[^>]*name="message"[^>]*>/i)?.[0] ?? "";
 
   assert.ok(messageField, "message textarea must be rendered");
-  assert.doesNotMatch(messageField, /\srequired(?:=|\s|>)/i);
-  assert.doesNotMatch(messageField, /\sminlength=/i);
+  assert.match(messageField, /\srequired(?:=|\s|>)/i);
+  assert.match(messageField, /\sminLength="10"/i);
+  assert.doesNotMatch(html, /Расскажите, что произошло — необязательно/);
   assert.match(html, /data-validation-message="Укажите ваше имя — не менее 2 символов\."/);
   assert.match(html, /data-validation-message="Укажите номер телефона\."/);
+  assert.match(html, /data-validation-message="Кратко опишите, что произошло — не менее 10 символов\."/);
   assert.match(html, /data-validation-message="Подтвердите согласие на обработку персональных данных\."/);
 });
 
