@@ -23,10 +23,8 @@ function validate_contact_request(array $input)
         $errors['name'] = 'Укажите имя длиной от 2 до 80 символов.';
     }
 
-    $phoneDigits = preg_replace('/\D+/', '', $phone);
-    $digitCount = strlen($phoneDigits);
-    if ($digitCount < 7 || $digitCount > 20 || strlen($phone) > 40) {
-        $errors['phone'] = 'Укажите корректный номер телефона.';
+    if (!preg_match('/^\+7 [0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}$/', $phone)) {
+        $errors['phone'] = 'Укажите российский номер: +7 и 10 цифр.';
     }
 
     $messageLength = mb_strlen($message, 'UTF-8');

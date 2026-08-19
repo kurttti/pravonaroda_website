@@ -86,9 +86,22 @@ test("requires the contact comment and keeps validation messages in Russian", as
   assert.match(messageField, /\sminLength="10"/i);
   assert.doesNotMatch(html, /Расскажите, что произошло — необязательно/);
   assert.match(html, /data-validation-message="Укажите ваше имя — не менее 2 символов\."/);
-  assert.match(html, /data-validation-message="Укажите номер телефона\."/);
+  assert.match(html, /data-validation-message="Укажите российский номер: \+7 и 10 цифр\."/);
   assert.match(html, /data-validation-message="Кратко опишите, что произошло — не менее 10 символов\."/);
   assert.match(html, /data-validation-message="Подтвердите согласие на обработку персональных данных\."/);
+});
+
+test("renders a Russian-only phone field with a fixed country prefix", async () => {
+  const response = await render();
+  const html = await response.text();
+  const phoneField = html.match(/<input\b[^>]*name="phone"[^>]*>/i)?.[0] ?? "";
+
+  assert.ok(phoneField, "phone input must be rendered");
+  assert.match(phoneField, /value="\+7 "/i);
+  assert.match(phoneField, /maxLength="16"/i);
+  assert.match(phoneField, /inputMode="numeric"/i);
+  assert.match(phoneField, /pattern="\\\+7 \[0-9\]\{3\} \[0-9\]\{3\} \[0-9\]\{2\} \[0-9\]\{2\}"/i);
+  assert.match(phoneField, /data-validation-message="Укажите российский номер: \+7 и 10 цифр\."/i);
 });
 
 test("ships discoverability and contact essentials", async () => {

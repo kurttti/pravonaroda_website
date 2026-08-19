@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { ClipboardEvent, FormEvent, useState } from "react";
+import { formatRussianPhone } from "./phone-format.js";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -49,6 +50,17 @@ export default function ContactForm() {
     event.currentTarget.setCustomValidity("");
   }
 
+  function handlePhoneInput(event: FormEvent<HTMLInputElement>) {
+    event.currentTarget.value = formatRussianPhone(event.currentTarget.value);
+    clearValidationMessage(event);
+  }
+
+  function handlePhonePaste(event: ClipboardEvent<HTMLInputElement>) {
+    event.preventDefault();
+    event.currentTarget.value = formatRussianPhone(event.clipboardData.getData("text"));
+    event.currentTarget.setCustomValidity("");
+  }
+
   return (
     <form className="contact-form" action="/api/send-request.php" method="post" onSubmit={handleSubmit}>
       <label className="form-honeypot" aria-hidden="true">
@@ -76,12 +88,14 @@ export default function ContactForm() {
           type="tel"
           name="phone"
           autoComplete="tel"
-          inputMode="tel"
-          maxLength={40}
-          placeholder="+7 900 000-00-00"
-          data-validation-message="Укажите номер телефона."
+          inputMode="numeric"
+          defaultValue="+7 "
+          maxLength={16}
+          pattern={String.raw`\+7 [0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}`}
+          data-validation-message="Укажите российский номер: +7 и 10 цифр."
           onInvalid={handleInvalid}
-          onInput={clearValidationMessage}
+          onInput={handlePhoneInput}
+          onPaste={handlePhonePaste}
           required
         />
       </label>
