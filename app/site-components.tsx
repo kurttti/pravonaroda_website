@@ -64,7 +64,7 @@ export function SiteFooter({ detail = false }: { detail?: boolean }) {
       </div>
       <div className="container footer-bottom">
         <p>ИП Милевский Александр Александрович · ИНН 775101196352 · ОГРН 326774600529055</p>
-        <div className="footer-legal"><a href="/politika-konfidencialnosti/">Политика конфиденциальности</a><p>Информация на сайте не является гарантией результата. © 2026</p></div>
+        <div className="footer-legal"><a href="/politika-konfidencialnosti/">Политика конфиденциальности</a><p>© 2026</p></div>
       </div>
     </footer>
   );
