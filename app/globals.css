@@ -38,10 +38,6 @@ h1, h2, h3, p, summary, .contact-row a, .footer-phone { overflow-wrap: normal; w
 nav { display: flex; gap: 22px; margin-left: auto; }
 nav a { font-size: 13px; font-weight: 600; transition: opacity .2s ease; }
 nav a:hover { opacity: .55; }
-.nav-message-link, .button-message { gap: 8px; }
-.nav-message-link { display: inline-flex; align-items: center; }
-.message-icon { width: 15px; height: 12px; display: inline-block; flex: none; position: relative; border: 1.5px solid currentColor; border-radius: 4px; opacity: .82; }
-.message-icon::after { content: ""; position: absolute; left: 3px; bottom: -4px; width: 5px; height: 5px; border-left: 1.5px solid currentColor; transform: skewY(-34deg); }
 .header-contact { text-align: right; margin-left: 15px; }
 .header-contact a, .header-contact span { display: block; }
 .phone-link { font-size: 14px; font-weight: 800; }

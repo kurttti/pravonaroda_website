@@ -26,6 +26,7 @@ test("renders a concise conversion-focused home page", async () => {
   assert.match(html, /Курьер забрал наличные, украшения или другие ценности/);
   assert.match(html, /Позвонить нам/);
   assert.match(html, /href="#request"[^>]*>.*?Написать/);
+  assert.doesNotMatch(html, /message-icon/);
   assert.match(html, /name="name"/);
   assert.match(html, /name="phone"/);
   assert.match(html, /name="message"/);

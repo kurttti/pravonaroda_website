@@ -4,10 +4,6 @@ import { fraudPath, phone, phoneDisplay } from "./site-data";
 const maxUrl = "https://max.ru/u/f9LHodD0cOIwQE2cvIWBjX0qohROYW3rx-Z5orltmdsdVexHlDZSl-bHUxQ";
 const telegramUrl = "https://t.me/pravonarod";
 
-export function MessageIcon() {
-  return <span className="message-icon" aria-hidden="true" />;
-}
-
 export function SiteHeader({ detail = false }: { detail?: boolean }) {
   return (
     <>
@@ -26,7 +22,7 @@ export function SiteHeader({ detail = false }: { detail?: boolean }) {
           <nav aria-label="Основная навигация">
             <a href={fraudPath}>Помощь при мошенничестве</a>
             {!detail && <a href="#services">Услуги</a>}
-            <a className="nav-message-link" href={detail ? "/#request" : "#request"}><MessageIcon />Написать</a>
+            <a href={detail ? "/#request" : "#request"}>Написать</a>
             <a href={detail ? "/#office" : "#office"}>Контакты</a>
           </nav>
           <div className="header-contact">
