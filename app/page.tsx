@@ -19,7 +19,7 @@ const structuredData = {
       legalName: "ИП Милевский Александр Александрович",
       url: siteUrl,
       logo: `${siteUrl}apple-touch-icon.png`,
-      image: `${siteUrl}og.png`,
+      image: `${siteUrl}og.jpg`,
       description: "Юридическая помощь при мошенничестве и хищении денег или ценностей в Москве.",
       telephone: phone,
       taxID: "775101196352",

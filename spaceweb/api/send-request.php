@@ -55,7 +55,37 @@ try {
         $respond(429, ['ok' => false, 'message' => 'Слишком много попыток. Попробуйте снова через 15 минут.']);
     }
 
-    send_contact_email($validation['data'], $mailConfig);
+    $deliverySucceeded = false;
+    $deliveryErrors = [];
+
+    $crmConfigPath = $projectRoot . '/private/bitrix24-config.php';
+    if (is_file($crmConfigPath)) {
+        try {
+            $crmConfig = require $crmConfigPath;
+            send_bitrix24_lead($validation['data'], $crmConfig);
+            $deliverySucceeded = true;
+        } catch (Throwable $crmError) {
+            $deliveryErrors[] = 'CRM: ' . $crmError->getMessage();
+        }
+    }
+
+    try {
+        send_contact_email($validation['data'], $mailConfig);
+        $deliverySucceeded = true;
+    } catch (Throwable $mailError) {
+        $deliveryErrors[] = 'Email: ' . $mailError->getMessage();
+    }
+
+    if ($deliverySucceeded && count($deliveryErrors) > 0) {
+        $partialIncidentId = bin2hex(random_bytes(6));
+        record_contact_incident($projectRoot, $partialIncidentId, implode(' | ', $deliveryErrors));
+        error_log('Contact form partial delivery incident ' . $partialIncidentId . ': ' . implode(' | ', $deliveryErrors));
+    }
+
+    if (!$deliverySucceeded) {
+        throw new RuntimeException('All contact delivery channels failed.');
+    }
+
     $respond(200, ['ok' => true, 'message' => 'Заявка отправлена. Мы свяжемся с вами по указанному номеру.']);
 } catch (Throwable $error) {
     $incidentId = bin2hex(random_bytes(6));
