@@ -25,7 +25,7 @@ test("renders a concise conversion-focused home page", async () => {
   assert.match(html, /Вернём то, что принадлежит вам по праву/);
   assert.match(html, /Курьер забрал наличные, украшения или другие ценности/);
   assert.match(html, /Позвонить нам/);
-  assert.match(html, /href="#request">Написать/);
+  assert.match(html, /href="#request"[^>]*>.*?Написать/);
   assert.match(html, /name="name"/);
   assert.match(html, /name="phone"/);
   assert.match(html, /name="message"/);
@@ -54,7 +54,7 @@ test("moves detailed fraud guidance to a dedicated page", async () => {
   assert.match(html, /Если деньги или ценности забрал курьер/);
   assert.match(html, /От хаоса — к понятному плану/);
   assert.match(html, /По-человечески/);
-  assert.match(html, /href="\/#request">Написать/);
+  assert.match(html, /href="\/#request"[^>]*>.*?Написать/);
   assert.doesNotMatch(html, /Обратиться в полицию/);
   assert.match(html, /<div class="big-number">03<\/div><div class="step-contact"><h3>Связаться с нами<\/h3>/);
   assert.doesNotMatch(html, /<div class="big-number">04<\/div>/);
@@ -114,4 +114,16 @@ test("ships discoverability and contact essentials", async () => {
   assert.match(html, /tel:\+79175844040/);
   assert.match(html, /id="services"/);
   assert.match(html, /yandex\.ru\/map-widget/);
+});
+
+test("offers safe and accessible MAX and Telegram contact links", async () => {
+  const response = await render();
+  const html = await response.text();
+
+  assert.match(html, /href="https:\/\/max\.ru\/u\/f9LHodD0cOIwQE2cvIWBjX0qohROYW3rx-Z5orltmdsdVexHlDZSl-bHUxQ"/);
+  assert.match(html, /href="https:\/\/t\.me\/pravonarod"/);
+  assert.match(html, /aria-label="Написать в MAX"/);
+  assert.match(html, /aria-label="Написать в Telegram"/);
+  assert.match(html, /target="_blank"/);
+  assert.match(html, /rel="noreferrer"/);
 });

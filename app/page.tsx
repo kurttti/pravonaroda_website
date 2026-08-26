@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ContactForm from "./contact-form";
-import { OfficeSection, SiteFooter, SiteHeader } from "./site-components";
+import { MessageIcon, OfficeSection, SiteFooter, SiteHeader } from "./site-components";
 import { legalServices, phone, siteUrl } from "./site-data";
 
 export const metadata: Metadata = {
@@ -69,7 +69,7 @@ export default function Home() {
             <p className="hero-lead">Стали жертвой мошенников? Деньги похищены, а надежда тает? Мы знаем, как действовать. Мы специализируемся на возврате похищенных мошенниками денег — и делаем это профессионально. Поможем разобраться в ситуации, выстроить стратегию и пройти все этапы: от заявления в полицию до взыскания средств. Вернём то, что принадлежит вам по праву.</p>
             <div className="hero-actions">
               <a className="button button-primary" href={`tel:${phone}`}>Позвонить нам</a>
-              <a className="button button-outline-light" href="#request">Написать</a>
+              <a className="button button-outline-light button-message" href="#request"><MessageIcon />Написать</a>
             </div>
             <div className="hero-note"><span className="status-dot" aria-hidden="true" /> Оцениваем перспективы только после изучения обстоятельств — без обещаний невозможного</div>
           </div>

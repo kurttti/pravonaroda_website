@@ -1,6 +1,13 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import { fraudPath, phone, phoneDisplay } from "./site-data";
 
+const maxUrl = "https://max.ru/u/f9LHodD0cOIwQE2cvIWBjX0qohROYW3rx-Z5orltmdsdVexHlDZSl-bHUxQ";
+const telegramUrl = "https://t.me/pravonarod";
+
+export function MessageIcon() {
+  return <span className="message-icon" aria-hidden="true" />;
+}
+
 export function SiteHeader({ detail = false }: { detail?: boolean }) {
   return (
     <>
@@ -19,7 +26,7 @@ export function SiteHeader({ detail = false }: { detail?: boolean }) {
           <nav aria-label="Основная навигация">
             <a href={fraudPath}>Помощь при мошенничестве</a>
             {!detail && <a href="#services">Услуги</a>}
-            <a href={detail ? "/#request" : "#request"}>Написать</a>
+            <a className="nav-message-link" href={detail ? "/#request" : "#request"}><MessageIcon />Написать</a>
             <a href={detail ? "/#office" : "#office"}>Контакты</a>
           </nav>
           <div className="header-contact">
@@ -42,6 +49,21 @@ export function OfficeSection() {
           <h2>Будем на связи</h2>
           <div className="contact-row"><span>Телефон</span><a href={`tel:${phone}`}>{phoneDisplay}</a></div>
           <div className="contact-row"><span>Адрес</span><p>г. Москва, ул. Куликовская, д. 6<br />ТЦ «Алфавит», 1 этаж</p></div>
+          <div className="messenger-contact">
+            <span className="messenger-contact-label">Написать в мессенджере</span>
+            <div className="messenger-links">
+              <a href={maxUrl} target="_blank" rel="noreferrer" aria-label="Написать в MAX">
+                <span className="messenger-brand-icon messenger-brand-max" aria-hidden="true" />
+                <span><small>Мессенджер</small><strong>MAX</strong></span>
+                <span className="messenger-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a href={telegramUrl} target="_blank" rel="noreferrer" aria-label="Написать в Telegram">
+                <span className="messenger-brand-icon messenger-brand-telegram" aria-hidden="true" />
+                <span><small>Мессенджер</small><strong>Telegram</strong></span>
+                <span className="messenger-arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
           <a className="route-link" href="https://yandex.ru/maps/?text=Москва%2C%20Куликовская%20улица%2C%206" target="_blank" rel="noreferrer">Построить маршрут ↗</a>
         </div>
         <div className="map-card">

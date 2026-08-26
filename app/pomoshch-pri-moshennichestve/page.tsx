@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
-import { SiteFooter, SiteHeader } from "../site-components";
+import { MessageIcon, SiteFooter, SiteHeader } from "../site-components";
 import { fraudPath, phone, situations, siteUrl } from "../site-data";
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function FraudHelpPage() {
             <p>Помогаем, если деньги списали без согласия, вы перевели их под влиянием обмана или передали наличные, украшения и другие ценности курьеру.</p>
             <div className="hero-actions">
               <a className="button button-primary" href={`tel:${phone}`}>Позвонить нам</a>
-              <a className="button button-outline-light" href="/#request">Написать</a>
+              <a className="button button-outline-light button-message" href="/#request"><MessageIcon />Написать</a>
             </div>
           </div>
         </div>
