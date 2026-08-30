@@ -6,6 +6,9 @@ test("SpaceWeb home output promotes the brand and preferred HTTPS URL", async ()
   const html = await readFile(new URL("../spaceweb-dist/index.html", import.meta.url), "utf8");
 
   assert.match(html, /<title>Народный юрист — помощь при мошенничестве в Москве<\/title>/);
+  assert.match(html, /<meta name="description" content="Помогаем вернуть деньги, похищенные мошенниками\. Народный юрист в Москве: помощь при списаниях, переводах, кредитах и передаче денег или ценностей курьеру\."/);
+  assert.match(html, /<meta property="og:description" content="Помогаем вернуть деньги, похищенные мошенниками\./);
+  assert.match(html, /Помогаем вернуть деньги, похищенные мошенниками\./);
   assert.match(html, /<link rel="canonical" href="https:\/\/pravonaroda\.ru\/"/);
   assert.match(html, /<meta name="robots" content="index, follow/);
   assert.match(html, /<link rel="icon" href="\/favicon-120\.png" sizes="120x120" type="image\/png"/);

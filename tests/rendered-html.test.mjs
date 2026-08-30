@@ -20,6 +20,7 @@ test("renders a concise conversion-focused home page", async () => {
 
   const html = await response.text();
   assert.match(html, /Юридическая помощь при/);
+  assert.match(html, /Помогаем вернуть деньги, похищенные мошенниками\./);
   assert.match(html, /Стали жертвой мошенников/);
   assert.match(html, /специализируемся на возврате похищенных мошенниками денег/);
   assert.match(html, /Вернём то, что принадлежит вам по праву/);
@@ -121,7 +122,9 @@ test("ships discoverability and contact essentials", async () => {
   assert.match(html, /id="services"/);
   assert.match(html, /yandex\.ru\/map-widget/);
   assert.match(html, /<title>Народный юрист — помощь при мошенничестве в Москве<\/title>/);
-  assert.match(html, /<meta name="description" content="Народный юрист в Москве: юридическая помощь при мошенничестве, незаконных списаниях, переводах, кредитах и передаче денег или ценностей курьеру\."/);
+  assert.match(html, /<meta name="description" content="Помогаем вернуть деньги, похищенные мошенниками\. Народный юрист в Москве: помощь при списаниях, переводах, кредитах и передаче денег или ценностей курьеру\."/);
+  assert.match(html, /<meta property="og:description" content="Помогаем вернуть деньги, похищенные мошенниками\./);
+  assert.match(html, /"description":"Помогаем вернуть деньги, похищенные мошенниками\. Юридическая помощь в Москве\./);
   assert.match(html, /"alternateName":"pravonaroda\.ru"/);
   assert.match(html, /"contactPoint":\{"@type":"ContactPoint"/);
   assert.match(html, /"sameAs":\["https:\/\/t\.me\/pravonarod","https:\/\/max\.ru\/u\//);

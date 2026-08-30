@@ -12,7 +12,7 @@ const routes = [
     pathname: "/",
     output: "index.html",
     title: "Народный юрист — помощь при мошенничестве в Москве",
-    description: "Народный юрист в Москве: юридическая помощь при мошенничестве, незаконных списаниях, переводах, кредитах и передаче денег или ценностей курьеру.",
+    description: "Помогаем вернуть деньги, похищенные мошенниками. Народный юрист в Москве: помощь при списаниях, переводах, кредитах и передаче денег или ценностей курьеру.",
     canonical: "https://pravonaroda.ru/",
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     socialImage: true,
