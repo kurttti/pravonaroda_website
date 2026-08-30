@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const yandexMetrikaCode = `(function(m,e,t,r,i,k,a){
+  m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+  m[i].l=1*new Date();
+  for (var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+  k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=112086779","ym");
+ym(112086779,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});`;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://pravonaroda.ru"),
   applicationName: "Народный юрист",
@@ -50,7 +58,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <head>
+        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: yandexMetrikaCode }} />
+      </head>
+      <body>
+        <noscript dangerouslySetInnerHTML={{ __html: '<div><img src="https://mc.yandex.ru/watch/112086779" style="position:absolute;left:-9999px" alt="" /></div>' }} />
+        {children}
+      </body>
     </html>
   );
 }

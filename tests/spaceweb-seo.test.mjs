@@ -27,3 +27,19 @@ test("SpaceWeb fraud page has route-specific social metadata", async () => {
   assert.doesNotMatch(html, /<meta property="og:image"/);
   assert.doesNotMatch(html, /<meta name="twitter:image"/);
 });
+
+test("SpaceWeb installs one Yandex Metrika counter on every public route", async () => {
+  const routes = [
+    "../spaceweb-dist/index.html",
+    "../spaceweb-dist/pomoshch-pri-moshennichestve/index.html",
+    "../spaceweb-dist/politika-konfidencialnosti/index.html",
+  ];
+
+  for (const route of routes) {
+    const html = await readFile(new URL(route, import.meta.url), "utf8");
+
+    assert.equal((html.match(/mc\.yandex\.ru\/metrika\/tag\.js\?id=112086779/g) ?? []).length, 1);
+    assert.equal((html.match(/ym\(112086779,["']init["']/g) ?? []).length, 1);
+    assert.equal((html.match(/mc\.yandex\.ru\/watch\/112086779/g) ?? []).length, 1);
+  }
+});

@@ -130,6 +130,25 @@ test("ships discoverability and contact essentials", async () => {
   assert.match(html, /<link rel="icon" href="\/favicon\.ico" type="image\/x-icon"/);
 });
 
+test("installs Yandex Metrika globally without exposing contact form values", async () => {
+  const homeResponse = await render();
+  const homeHtml = await homeResponse.text();
+  const policyResponse = await render("/politika-konfidencialnosti");
+  const policyHtml = await policyResponse.text();
+
+  assert.match(homeHtml, /mc\.yandex\.ru\/metrika\/tag\.js\?id=112086779/);
+  assert.match(homeHtml, /ym\(112086779,["']init["']/);
+  assert.match(homeHtml, /webvisor:true/);
+  assert.match(homeHtml, /clickmap:true/);
+  assert.match(homeHtml, /mc\.yandex\.ru\/watch\/112086779/);
+  assert.match(homeHtml, /<form class="contact-form ym-disable-submit"/);
+  assert.equal((homeHtml.match(/ym-disable-keys/g) ?? []).length, 4);
+
+  assert.match(policyHtml, /Яндекс Метрика/);
+  assert.match(policyHtml, /веб-аналитик/i);
+  assert.match(policyHtml, /Имя, телефон и текст обращения не передаются в Метрику/);
+});
+
 test("offers safe and accessible MAX and Telegram contact links", async () => {
   const response = await render();
   const html = await response.text();

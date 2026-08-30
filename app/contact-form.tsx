@@ -62,14 +62,15 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="contact-form" action="/api/send-request.php" method="post" onSubmit={handleSubmit}>
+    <form className="contact-form ym-disable-submit" action="/api/send-request.php" method="post" onSubmit={handleSubmit}>
       <label className="form-honeypot" aria-hidden="true">
         <span>Ваш сайт</span>
-        <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+        <input className="ym-disable-keys" type="text" name="website" tabIndex={-1} autoComplete="off" />
       </label>
       <label>
         <span>Ваше имя</span>
         <input
+          className="ym-disable-keys"
           type="text"
           name="name"
           autoComplete="name"
@@ -85,6 +86,7 @@ export default function ContactForm() {
       <label>
         <span>Номер телефона</span>
         <input
+          className="ym-disable-keys"
           type="tel"
           name="phone"
           autoComplete="tel"
@@ -102,6 +104,7 @@ export default function ContactForm() {
       <label>
         <span>Расскажите, что произошло</span>
         <textarea
+          className="ym-disable-keys"
           name="message"
           rows={5}
           minLength={10}
