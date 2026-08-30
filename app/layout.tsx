@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://pravonaroda.ru"),
   applicationName: "Народный юрист",
   title: {
-    default: "Юридическая помощь при мошенничестве — Народный юрист",
+    default: "Народный юрист — помощь при мошенничестве в Москве",
     template: "%s | Народный юрист",
   },
   description:
-    "Юридическая помощь, если мошенники похитили деньги или ценности, списали средства, убедили сделать перевод или передать наличные курьеру.",
+    "Народный юрист в Москве: юридическая помощь при мошенничестве, незаконных списаниях, переводах, кредитах и передаче денег или ценностей курьеру.",
   alternates: {
     canonical: "/",
     languages: { "ru-RU": "/", "x-default": "/" },
@@ -19,22 +19,25 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: "/",
     siteName: "Народный юрист",
-    title: "Юридическая помощь при мошенничестве — Народный юрист",
-    description: "Помогаем после хищения денег или ценностей, незаконных списаний, переводов и передачи наличных курьерам мошенников.",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Народный юрист — помощь пострадавшим от мошенничества" }],
+    title: "Народный юрист — помощь при мошенничестве в Москве",
+    description: "Юридическая помощь после хищения денег или ценностей, незаконных списаний, переводов, кредитов и передачи наличных курьерам мошенников.",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Народный юрист — помощь при мошенничестве" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Юридическая помощь при мошенничестве — Народный юрист",
-    description: "Помощь после хищения денег или ценностей, незаконных списаний, переводов и передачи наличных курьерам.",
+    title: "Народный юрист — помощь при мошенничестве в Москве",
+    description: "Юридическая помощь после хищения денег или ценностей, незаконных списаний, переводов, кредитов и передачи наличных курьерам.",
     images: ["/og.jpg"],
   },
   icons: {
     icon: [
-      { url: "/favicon.svg?v=2", type: "image/svg+xml" },
-      { url: "/favicon-32.png?v=2", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-120.png", sizes: "120x120", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", type: "image/x-icon" },
     ],
-    apple: "/apple-touch-icon.png?v=2",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   robots: {
     index: true,

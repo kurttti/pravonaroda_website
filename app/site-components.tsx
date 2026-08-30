@@ -1,8 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import { fraudPath, phone, phoneDisplay } from "./site-data";
-
-const maxUrl = "https://max.ru/u/f9LHodD0cOIwQE2cvIWBjX0qohROYW3rx-Z5orltmdsdVexHlDZSl-bHUxQ";
-const telegramUrl = "https://t.me/pravonarod";
+import { fraudPath, maxUrl, phone, phoneDisplay, telegramUrl } from "./site-data";
 
 export function SiteHeader({ detail = false }: { detail?: boolean }) {
   return (

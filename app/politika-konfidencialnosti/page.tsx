@@ -3,8 +3,13 @@ import { SiteFooter, SiteHeader } from "../site-components";
 
 export const metadata: Metadata = {
   title: "Политика конфиденциальности",
-  description: "Политика обработки персональных данных посетителей сайта pravonaroda.ru.",
+  description: "Политика обработки персональных данных сайта «Народный юрист».",
   alternates: { canonical: "https://pravonaroda.ru/politika-konfidencialnosti/" },
+  robots: {
+    index: false,
+    follow: true,
+    googleBot: { index: false, follow: true },
+  },
 };
 
 export default function PrivacyPolicyPage() {

@@ -2,6 +2,8 @@ export const phone = "+79175844040";
 export const phoneDisplay = "+7 (917) 584-40-40";
 export const siteUrl = "https://pravonaroda.ru/";
 export const fraudPath = "/pomoshch-pri-moshennichestve/";
+export const telegramUrl = "https://t.me/pravonarod";
+export const maxUrl = "https://max.ru/u/f9LHodD0cOIwQE2cvIWBjX0qohROYW3rx-Z5orltmdsdVexHlDZSl-bHUxQ";
 
 export const situations = [
   {

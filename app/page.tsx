@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import ContactForm from "./contact-form";
 import { OfficeSection, SiteFooter, SiteHeader } from "./site-components";
-import { legalServices, phone, siteUrl } from "./site-data";
+import { legalServices, maxUrl, phone, siteUrl, telegramUrl } from "./site-data";
+
+const homeTitle = "Народный юрист — помощь при мошенничестве в Москве";
+const homeDescription = "Народный юрист в Москве: юридическая помощь при мошенничестве, незаконных списаниях, переводах, кредитах и передаче денег или ценностей курьеру.";
 
 export const metadata: Metadata = {
-  title: "Юридическая помощь при мошенничестве в Москве",
-  description: "Помощь, если мошенники похитили деньги или ценности, списали средства, убедили сделать перевод или передать наличные курьеру.",
+  title: { absolute: homeTitle },
+  description: homeDescription,
   alternates: { canonical: siteUrl },
 };
 
@@ -22,6 +25,14 @@ const structuredData = {
       image: `${siteUrl}og.jpg`,
       description: "Юридическая помощь при мошенничестве и хищении денег или ценностей в Москве.",
       telephone: phone,
+      sameAs: [telegramUrl, maxUrl],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: phone,
+        contactType: "customer support",
+        areaServed: "RU",
+        availableLanguage: "Russian",
+      },
       taxID: "775101196352",
       identifier: { "@type": "PropertyValue", name: "ОГРНИП", value: "326774600529055" },
       address: {
@@ -49,6 +60,7 @@ const structuredData = {
       "@id": `${siteUrl}#website`,
       url: siteUrl,
       name: "Народный юрист",
+      alternateName: "pravonaroda.ru",
       inLanguage: "ru-RU",
       publisher: { "@id": `${siteUrl}#legal-service` },
     },

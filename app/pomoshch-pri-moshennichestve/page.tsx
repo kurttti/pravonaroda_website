@@ -3,10 +3,28 @@ import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "../site-components";
 import { fraudPath, phone, situations, siteUrl } from "../site-data";
 
+const fraudTitle = "Помощь при мошенничестве: деньги, наличные и ценности | Народный юрист";
+const fraudDescription = "Что делать после хищения денег или ценностей, перевода мошенникам, незаконного списания или передачи курьеру. Юридическая помощь в Москве.";
+
 export const metadata: Metadata = {
   title: "Помощь при мошенничестве: деньги, наличные и ценности",
-  description: "Что делать после хищения денег или ценностей, перевода мошенникам, незаконного списания или передачи курьеру. Юридическая помощь в Москве.",
+  description: fraudDescription,
   alternates: { canonical: `${siteUrl}${fraudPath.slice(1)}` },
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    url: `${siteUrl}${fraudPath.slice(1)}`,
+    siteName: "Народный юрист",
+    title: fraudTitle,
+    description: fraudDescription,
+    images: [],
+  },
+  twitter: {
+    card: "summary",
+    title: fraudTitle,
+    description: fraudDescription,
+    images: [],
+  },
 };
 
 export default function FraudHelpPage() {
