@@ -1,5 +1,5 @@
 import { StrictMode } from "react";
-import { hydrateRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import Home from "../app/page";
 import FraudHelpPage from "../app/pomoshch-pri-moshennichestve/page";
 import PrivacyPolicyPage from "../app/politika-konfidencialnosti/page";
@@ -13,9 +13,15 @@ const pages = {
 };
 const Page = pages[pathname as keyof typeof pages] ?? Home;
 
-hydrateRoot(
-  document.getElementById("root")!,
+const rootElement = document.getElementById("root")!;
+const app = (
   <StrictMode>
     <Page />
-  </StrictMode>,
+  </StrictMode>
 );
+
+if (rootElement.children.length > 0) {
+  hydrateRoot(rootElement, app);
+} else {
+  createRoot(rootElement).render(app);
+}

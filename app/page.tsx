@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import ContactForm from "./contact-form";
 import { OfficeSection, SiteFooter, SiteHeader } from "./site-components";
-import { legalServices, phone, siteUrl } from "./site-data";
+import { legalServices, maxUrl, phone, siteUrl, telegramUrl } from "./site-data";
+
+const homeTitle = "Народный юрист — помощь при мошенничестве в Москве";
+const homeDescription = "Помогаем вернуть деньги, похищенные мошенниками. Народный юрист в Москве: помощь при списаниях, переводах, кредитах и передаче денег или ценностей курьеру.";
 
 export const metadata: Metadata = {
-  title: "Юридическая помощь при мошенничестве в Москве",
-  description: "Помощь, если мошенники похитили деньги или ценности, списали средства, убедили сделать перевод или передать наличные курьеру.",
+  title: { absolute: homeTitle },
+  description: homeDescription,
   alternates: { canonical: siteUrl },
 };
 
@@ -20,8 +23,16 @@ const structuredData = {
       url: siteUrl,
       logo: `${siteUrl}apple-touch-icon.png`,
       image: `${siteUrl}og.jpg`,
-      description: "Юридическая помощь при мошенничестве и хищении денег или ценностей в Москве.",
+      description: "Помогаем вернуть деньги, похищенные мошенниками. Юридическая помощь в Москве.",
       telephone: phone,
+      sameAs: [telegramUrl, maxUrl],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: phone,
+        contactType: "customer support",
+        areaServed: "RU",
+        availableLanguage: "Russian",
+      },
       taxID: "775101196352",
       identifier: { "@type": "PropertyValue", name: "ОГРНИП", value: "326774600529055" },
       address: {
@@ -49,6 +60,7 @@ const structuredData = {
       "@id": `${siteUrl}#website`,
       url: siteUrl,
       name: "Народный юрист",
+      alternateName: "pravonaroda.ru",
       inLanguage: "ru-RU",
       publisher: { "@id": `${siteUrl}#legal-service` },
     },
@@ -66,7 +78,7 @@ export default function Home() {
           <div className="hero-copy">
             <div className="eyebrow"><span /> Наше профильное направление</div>
             <h1>Юридическая помощь при <em>мошенничестве</em></h1>
-            <p className="hero-lead">Стали жертвой мошенников? Деньги похищены, а надежда тает? Мы знаем, как действовать. Мы специализируемся на возврате похищенных мошенниками денег — и делаем это профессионально. Поможем разобраться в ситуации, выстроить стратегию и пройти все этапы: от заявления в полицию до взыскания средств. Вернём то, что принадлежит вам по праву.</p>
+            <p className="hero-lead">Помогаем вернуть деньги, похищенные мошенниками. Стали жертвой мошенников? Деньги похищены, а надежда тает? Мы знаем, как действовать. Мы специализируемся на возврате похищенных мошенниками денег — и делаем это профессионально. Поможем разобраться в ситуации, выстроить стратегию и пройти все этапы: от заявления в полицию до взыскания средств. Вернём то, что принадлежит вам по праву.</p>
             <div className="hero-actions">
               <a className="button button-primary" href={`tel:${phone}`}>Позвонить нам</a>
               <a className="button button-outline-light" href="#request">Написать</a>

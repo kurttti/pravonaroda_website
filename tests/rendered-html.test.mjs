@@ -20,6 +20,7 @@ test("renders a concise conversion-focused home page", async () => {
 
   const html = await response.text();
   assert.match(html, /Юридическая помощь при/);
+  assert.match(html, /Помогаем вернуть деньги, похищенные мошенниками\./);
   assert.match(html, /Стали жертвой мошенников/);
   assert.match(html, /специализируемся на возврате похищенных мошенниками денег/);
   assert.match(html, /Вернём то, что принадлежит вам по праву/);
@@ -59,6 +60,10 @@ test("moves detailed fraud guidance to a dedicated page", async () => {
   assert.doesNotMatch(html, /Обратиться в полицию/);
   assert.match(html, /<div class="big-number">03<\/div><div class="step-contact"><h3>Связаться с нами<\/h3>/);
   assert.doesNotMatch(html, /<div class="big-number">04<\/div>/);
+  assert.match(html, /<meta property="og:title" content="Помощь при мошенничестве: деньги, наличные и ценности \| Народный юрист"/);
+  assert.match(html, /<meta name="twitter:title" content="Помощь при мошенничестве: деньги, наличные и ценности \| Народный юрист"/);
+  assert.doesNotMatch(html, /<meta property="og:image"/);
+  assert.doesNotMatch(html, /<meta name="twitter:image"/);
 });
 
 test("renders the personal data policy", async () => {
@@ -75,6 +80,7 @@ test("renders the personal data policy", async () => {
   assert.doesNotMatch(html, /Дата публикации:/);
   assert.doesNotMatch(html, /описание ситуации при желании/i);
   assert.match(html, /Без имени, телефона, описания ситуации и согласия/);
+  assert.match(html, /<meta name="robots" content="noindex, follow"/);
 });
 
 test("requires the contact comment and keeps validation messages in Russian", async () => {
@@ -115,6 +121,35 @@ test("ships discoverability and contact essentials", async () => {
   assert.match(html, /tel:\+79175844040/);
   assert.match(html, /id="services"/);
   assert.match(html, /yandex\.ru\/map-widget/);
+  assert.match(html, /<title>Народный юрист — помощь при мошенничестве в Москве<\/title>/);
+  assert.match(html, /<meta name="description" content="Помогаем вернуть деньги, похищенные мошенниками\. Народный юрист в Москве: помощь при списаниях, переводах, кредитах и передаче денег или ценностей курьеру\."/);
+  assert.match(html, /<meta property="og:description" content="Помогаем вернуть деньги, похищенные мошенниками\./);
+  assert.match(html, /"description":"Помогаем вернуть деньги, похищенные мошенниками\. Юридическая помощь в Москве\./);
+  assert.match(html, /"alternateName":"pravonaroda\.ru"/);
+  assert.match(html, /"contactPoint":\{"@type":"ContactPoint"/);
+  assert.match(html, /"sameAs":\["https:\/\/t\.me\/pravonarod","https:\/\/max\.ru\/u\//);
+  assert.match(html, /<link rel="icon" href="\/favicon\.svg" type="image\/svg\+xml"/);
+  assert.match(html, /<link rel="icon" href="\/favicon-120\.png" sizes="120x120" type="image\/png"/);
+  assert.match(html, /<link rel="icon" href="\/favicon\.ico" type="image\/x-icon"/);
+});
+
+test("installs Yandex Metrika globally without exposing contact form values", async () => {
+  const homeResponse = await render();
+  const homeHtml = await homeResponse.text();
+  const policyResponse = await render("/politika-konfidencialnosti");
+  const policyHtml = await policyResponse.text();
+
+  assert.match(homeHtml, /mc\.yandex\.ru\/metrika\/tag\.js\?id=112086779/);
+  assert.match(homeHtml, /ym\(112086779,["']init["']/);
+  assert.match(homeHtml, /webvisor:true/);
+  assert.match(homeHtml, /clickmap:true/);
+  assert.match(homeHtml, /mc\.yandex\.ru\/watch\/112086779/);
+  assert.match(homeHtml, /<form class="contact-form ym-disable-submit"/);
+  assert.equal((homeHtml.match(/ym-disable-keys/g) ?? []).length, 4);
+
+  assert.match(policyHtml, /Яндекс Метрика/);
+  assert.match(policyHtml, /веб-аналитик/i);
+  assert.match(policyHtml, /Имя, телефон и текст обращения не передаются в Метрику/);
 });
 
 test("offers safe and accessible MAX and Telegram contact links", async () => {
