@@ -46,3 +46,18 @@ test("SpaceWeb installs one Yandex Metrika counter on every public route", async
     assert.equal((html.match(/mc\.yandex\.ru\/watch\/112086779/g) ?? []).length, 1);
   }
 });
+
+test("SpaceWeb keeps directory canonical redirects on HTTPS", async () => {
+  const htaccess = await readFile(new URL("../spaceweb-dist/.htaccess", import.meta.url), "utf8");
+  const directoryRedirect = [
+    "RewriteCond %{REQUEST_FILENAME} -d",
+    "RewriteCond %{REQUEST_URI} !/$",
+    "RewriteRule ^ https://pravonaroda.ru%{REQUEST_URI}/ [R=301,L]",
+  ].join("\n");
+
+  assert.match(htaccess, new RegExp(directoryRedirect.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.ok(
+    htaccess.indexOf(directoryRedirect) < htaccess.indexOf("RewriteCond %{HTTPS} off"),
+    "the directory redirect must run before the generic HTTPS redirect",
+  );
+});
