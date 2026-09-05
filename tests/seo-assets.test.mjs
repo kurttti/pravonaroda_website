@@ -10,6 +10,14 @@ test("sitemap lists only canonical pages intended for search", async () => {
   assert.doesNotMatch(sitemap, /politika-konfidencialnosti/);
   assert.equal((sitemap.match(/<url>/g) ?? []).length, 2);
   assert.equal((sitemap.match(/<lastmod>2026-08-30<\/lastmod>/g) ?? []).length, 2);
+  assert.doesNotMatch(sitemap, /<changefreq>|<priority>/);
+
+  const { seoRoutes } = await import("../app/seo-data.mjs");
+  const sitemapLocations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+  assert.deepEqual(
+    sitemapLocations,
+    seoRoutes.filter((route) => route.includeInSitemap).map((route) => route.canonical),
+  );
 });
 
 test("ships conventional high-resolution favicon fallbacks", async () => {
